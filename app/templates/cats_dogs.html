@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        const CLASS = {
+            0: 'Mèo',
+            1: 'Chó',
+        };
+
+        // Load model
+        $("document").ready(async function() {
+            model = await tf.loadLayersModel('http://127.0.0.1:5000/static/cat vs dog/tfjs_model/model.json');
+            console.log('Load model');
+            console.log(model.summary());
+        });
+
+        $("#upload_button").click(function() {
+            $("#fileinput").trigger('click');
+        });
+
+        async function predict() {
+            // 1. Convert image to tensor
+            let image = document.getElementById("display_image");
+            let img = tf.browser.fromPixels(image);
+            let normalizationOffset = tf.scalar(255/2); // 127.5
+            let tensor = img
+                .resizeNearestNeighbor([160, 160])
+                .toFloat()
+                .sub(normalizationOffset)
+                .div(normalizationOffset)
+                .reverse(2)
+                .expandDims();
+
+            // 2. Predict
+            let predictions = await model.predict(tensor);
+            predictions = predictions.dataSync();
+            console.log(predictions);
+
+            // 3. Show image on web
+            var index = predictions < 0.5 ? 0 : 1;
+            $("#result_info").append(`${CLASS[index]}`);
+        };
+
+        $("#fileinput").change(function () {
+            let reader = new FileReader();
+            reader.onload = function () {
+                let dataURL = reader.result;
+
+                imEl = document.getElementById("display_image");
+                imEl.onload = function () {
+                   predict();
+                }
+                $("#display_image").attr("src", dataURL);
+                $("#result_info").empty();
+            }
+
+            let file = $("#fileinput").prop("files")[0];
+            reader.readAsDataURL(file);
+        });
+    </script>
+{% endblock %}
