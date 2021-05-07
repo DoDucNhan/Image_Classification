@@ -38,6 +38,10 @@ Demo 1  |  Demo 2
 ![](4.png)  |  ![](5.png)
 
 ## Tham khảo
+1. Tạo và huấn luyện model với tensorflow:
 - https://www.tensorflow.org/hub/tutorials/image_feature_vector
 - https://www.tensorflow.org/tutorials/images/transfer_learning
+2. Các triển khai model trên trình duyệt bằng tensorflow.js:
 - https://www.youtube.com/watch?v=nAwW11yMjpQ&t=2341s
+3. Web framework - Flask:
+- https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
