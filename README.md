@@ -36,3 +36,8 @@ python flask_web.py
 Demo 1  |  Demo 2
 :-------------------------:|:-------------------------:
 ![](4.png)  |  ![](5.png)
+
+## Tham khảo
+- https://www.tensorflow.org/hub/tutorials/image_feature_vector
+- https://www.tensorflow.org/tutorials/images/transfer_learning
+- https://www.youtube.com/watch?v=nAwW11yMjpQ&t=2341s
