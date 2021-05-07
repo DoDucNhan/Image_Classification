@@ -12,7 +12,7 @@ Phân biệt hoa             |  Phân biệt chó mèo
 ## Thiết lập
 1. Clone project về máy:
 ```
- git clone https://github.com/thaolmk54/hcrn-videoqa.git
+ git clone https://github.com/DoDucNhan/Image_Classification.git
 ```
 
 2. Cài đặt các thư viện cần thiết:
